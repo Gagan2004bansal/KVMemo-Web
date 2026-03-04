@@ -73,7 +73,7 @@ function Terminal() {
       {/* body */}
       <div ref={bodyRef} style={{height:280,overflowY:'auto',padding:'14px 18px',fontFamily:F.mono,fontSize:12.5,lineHeight:2}}>
         <div style={{color:C.t3,marginBottom:10,fontSize:11}}>
-          {'# KVMemo v0.1.0  ·  16 shards  ·  LRU eviction  ·  in-memory'}
+          {'# KVMemo v0.1.0  ·  64 shards  ·  LRU eviction  ·  in-memory'}
         </div>
         {lines.map((l,i)=>(
           <div key={i} style={{animation:'slideL .14s ease'}}>
@@ -149,15 +149,15 @@ function FeatureCard({ icon, title, desc, color, delay=0 }) {
    Constants
 ────────────────────────────────────────── */
 const STATS = [
-  { value:'~19M',  label:'ops / sec',   sub:'GET · 8-shard bench', color:C.blue,   delay:0    },
-  { value:'~12M',  label:'ops / sec',   sub:'SET · 8-shard bench', color:C.cyan,   delay:.06  },
+  { value:'~19M',  label:'ops / sec',   sub:'GET · 64-shard bench', color:C.blue,   delay:0    },
+  { value:'~12M',  label:'ops / sec',   sub:'SET · 64-shard bench', color:C.cyan,   delay:.06  },
   { value:'100ms', label:'TTL tick',    sub:'background thread',   color:C.green,  delay:.12  },
   { value:'O(1)',  label:'GET / SET',   sub:'hash-sharded store',  color:C.violet, delay:.18  },
 ]
 
 const FEATURES = [
   { icon:'⚡', color:C.amber,  title:'Sub-ms latency',          desc:'RAM-first. No disk on the hot path. GET/SET finish in single-digit microseconds.' },
-  { icon:'🔀', color:C.blue,   title:'Shard concurrency',       desc:'16 independent shard mutexes — no global lock, throughput scales with cores.' },
+  { icon:'🔀', color:C.blue,   title:'Shard concurrency',       desc:'64 independent shard mutexes — no global lock, throughput scales with cores.' },
   { icon:'⏱',  color:C.rose,   title:'TTL scheduling',          desc:'Background TTLManager thread evicts expired keys every 100ms, off the request path.' },
   { icon:'🧠', color:C.violet, title:'Pluggable LRU eviction',  desc:'Eviction policy is a pure interface. Swap LRU for LFU without touching the engine.' },
   { icon:'📊', color:C.cyan,   title:'Memory tracking',         desc:'Per-write byte accounting with configurable hard limit. Fires eviction before OOM.' },

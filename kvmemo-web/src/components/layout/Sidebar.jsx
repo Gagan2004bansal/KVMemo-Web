@@ -6,6 +6,7 @@ const NAV = [
     { to:'/docs/getting-started', label:'Introduction' },
     { to:'/docs/commands',        label:'Commands' },
     { to:'/docs/call-stack',      label:'Call Stack' },
+    { to:'/docs/DevDocs', label:'Developer Docs'}
   ]},
   { group:'Community', items:[
     { to:'/docs/contributing', label:'Contributing' },

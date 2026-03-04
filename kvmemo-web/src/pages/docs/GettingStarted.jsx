@@ -26,8 +26,8 @@ export default function GettingStarted() {
       <CodeBlock label="Windows (MinGW)" code={'mkdir build && cd build\ncmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release\ncmake --build . --parallel\nkvmemo-server.exe'}/>
 
       <H2>Run the Server</H2>
-      <CodeBlock label="bash" code={"./kvmemo-server\n\n# [KVMemo] Starting on 127.0.0.1:6379\n# [KVMemo] ShardManager — 16 shards initialized\n# [KVMemo] TTLManager started — tick: 100ms\n# [KVMemo] Ready."}/>
-      <CodeBlock label="optional flags" code={"./kvmemo-server --port 6380 --shards 32 --memory-limit 256MB"}/>
+      <CodeBlock label="bash" code={"./kvmemo-server\n\n# [KVMemo] Starting on 127.0.0.1:6379\n# [KVMemo] ShardManager — 64 shards initialized\n# [KVMemo] TTLManager started — tick: 100ms\n# [KVMemo] Ready."}/>
+      <CodeBlock label="optional flags" code={"./kvmemo-server --port 6380 --shards 128 --memory-limit 256MB"}/>
 
       <H2>Connect a Client</H2>
       <P>KVMemo speaks JSON over WebSocket. Use any WS client or the built-in Playground tab.</P>

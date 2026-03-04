@@ -35,7 +35,7 @@ const FAQS = [
   { q: 'How is KVMemo different from Redis?', a: 'Redis is production-grade with 20+ years of hardening. KVMemo is a learning project built from scratch in C++20 — same concepts (sharding, TTL, LRU, WS protocol), transparent source so you can see exactly how each piece works.' },
   { q: 'Is it production-ready?', a: "Not yet. No persistence, replication, or authentication. Phase 3 adds a Write-Ahead Log + RDB snapshots. Phase 4 adds replication. Check the Roadmap." },
   { q: 'Which platforms are supported?', a: 'Linux, macOS, and Windows (via WSL2). CMake 3.20+ with GCC 12+ or Clang 15+.' },
-  { q: 'Why 16 shards by default?', a: 'Balance between contention reduction and memory overhead. Change it: --shards 32 at startup. More shards = less mutex contention, slightly more memory.' },
+  { q: 'Why 64 shards by default?', a: 'Balance between contention reduction and memory overhead. Change it: --shards 128 at startup. More shards = less mutex contention, slightly more memory.' },
   { q: 'How does TTL work internally?', a: 'On SET with EX N, the key is registered in TTLIndex (time-sorted std::map). TTLManager — a background std::thread — wakes every 100ms, calls collect_expired(), then KVEngine::del() per expired key. Zero impact on request latency.' },
   { q: 'Can I swap the eviction policy?', a: 'Yes. EvictionManager implements EvictionPolicy (pure interface). Extend it, override select_victim(), inject at startup. Default is LRU via doubly-linked list + hashmap.' },
   { q: 'What is the WebSocket protocol?', a: 'Plain JSON over WS. Request: { id, command, key, value, ttl }. Response: { id, result } or { id, error }. The id field correlates async responses to requests.' },
@@ -70,7 +70,7 @@ export function FAQ() {
    CHANGELOG
 ══════════════════════════════════════════ */
 const LOG = [
-  { v: '0.1.0-dev', date: '2025', status: 'current', color: C.green, changes: ['Initial release — complete in-memory engine', '16-shard architecture with per-shard mutexes', 'TTLManager background thread (100ms tick)', 'LRU eviction + MemoryTracker hard limit', 'Commands: SET GET DEL KEYS FLUSH PING TTL EXISTS', 'TcpServer + JSON-over-WebSocket protocol', 'CMake build — Linux, macOS, Windows (WSL2)', 'Interactive web documentation'] },
+  { v: '0.1.0-dev', date: '2025', status: 'current', color: C.green, changes: ['Initial release — complete in-memory engine', '64-shard architecture with per-shard mutexes', 'TTLManager background thread (100ms tick)', 'LRU eviction + MemoryTracker hard limit', 'Commands: SET GET DEL KEYS FLUSH PING TTL EXISTS', 'TcpServer + JSON-over-WebSocket protocol', 'CMake build — Linux, macOS, Windows (WSL2)', 'Interactive web documentation'] },
   { v: '0.2.0', date: 'TBD', status: 'next', color: C.blue, changes: ['MetricsRegistry with p50/p95/p99 histograms', 'Live /metrics WebSocket endpoint', 'Per-shard load heatmap', 'Hit/miss ratio per command'] },
   { v: '0.3.0', date: 'TBD', status: 'planned', color: C.amber, changes: ['Write-Ahead Log (WAL)', 'RDB snapshot format', 'Crash recovery — WAL replay on startup'] },
   { v: '0.4.0', date: 'TBD', status: 'planned', color: C.violet, changes: ['Primary / replica protocol', 'Async replication stream', 'Replica promotion on primary failure'] },

@@ -15,6 +15,7 @@ import GettingStarted from './pages/docs/GettingStarted'
 import Commands from './pages/docs/Commands'
 import CallStack from './pages/docs/CallStack'
 import { Contributing, FAQ, Changelog } from './pages/docs/Other'
+import DevDocs from './pages/docs/DevDocs'
 
 /* ── Docs layout (sidebar + main content) ── */
 function DocsLayout({ sidebarOpen }) {
@@ -65,6 +66,7 @@ function AppInner() {
           <Route path="/docs/getting-started" element={<GettingStarted />} />
           <Route path="/docs/commands"        element={<Commands />} />
           <Route path="/docs/call-stack"      element={<CallStack />} />
+          <Route path='/docs/DevDocs'         element={<DevDocs/>}/>
           <Route path="/docs/contributing"    element={<Contributing />} />
           <Route path="/docs/faq"             element={<FAQ />} />
           <Route path="/docs/changelog"       element={<Changelog />} />
