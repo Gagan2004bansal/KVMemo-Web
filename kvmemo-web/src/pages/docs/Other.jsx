@@ -70,8 +70,8 @@ export function FAQ() {
    CHANGELOG
 ══════════════════════════════════════════ */
 const LOG = [
-  { v: '0.1.0-dev', date: '2025', status: 'current', color: C.green, changes: ['Initial release — complete in-memory engine', '64-shard architecture with per-shard mutexes', 'TTLManager background thread (100ms tick)', 'LRU eviction + MemoryTracker hard limit', 'Commands: SET GET DEL KEYS FLUSH PING TTL EXISTS', 'TcpServer + JSON-over-WebSocket protocol', 'CMake build — Linux, macOS, Windows (WSL2)', 'Interactive web documentation'] },
-  { v: '0.2.0', date: 'TBD', status: 'next', color: C.blue, changes: ['MetricsRegistry with p50/p95/p99 histograms', 'Live /metrics WebSocket endpoint', 'Per-shard load heatmap', 'Hit/miss ratio per command'] },
+  { v: '0.1.0-dev', date: 'Apr 2026', status: 'current', color: C.green, changes: ['Initial release — complete in-memory engine', '64-shard architecture with per-shard mutexes', 'TTLManager background thread (100ms tick)', 'LRU eviction + MemoryTracker hard limit', 'Commands: SET GET DEL KEYS FLUSH PING TTL EXISTS', 'TcpServer + JSON-over-WebSocket protocol', 'CMake build — Linux, macOS, Windows (WSL2)', 'Interactive web documentation'] },
+  { v: '0.2.0', date: 'June 2026', status: 'next', color: C.blue, changes: ['MetricsRegistry with p50/p95/p99 histograms', 'Live /metrics WebSocket endpoint', 'Per-shard load heatmap', 'Hit/miss ratio per command'] },
   { v: '0.3.0', date: 'TBD', status: 'planned', color: C.amber, changes: ['Write-Ahead Log (WAL)', 'RDB snapshot format', 'Crash recovery — WAL replay on startup'] },
   { v: '0.4.0', date: 'TBD', status: 'planned', color: C.violet, changes: ['Primary / replica protocol', 'Async replication stream', 'Replica promotion on primary failure'] },
 ]

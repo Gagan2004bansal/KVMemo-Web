@@ -290,7 +290,7 @@ export default function Home() {
       {/* ═══ CTA ══════════════════════════════ */}
       <section style={{padding:'80px 40px 120px',maxWidth:1200,margin:'0 auto',textAlign:'center'}}>
         <div style={{height:1,background:`linear-gradient(90deg,transparent,${C.b0},transparent)`,marginBottom:64}}/>
-        <p style={{fontSize:11,fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',color:C.blue,marginBottom:16}}>MIT</p>
+        <p style={{fontSize:11,fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',color:C.blue,marginBottom:16}}>KVMemo - MIT License</p>
         <h2 style={{fontSize:'clamp(28px,4vw,50px)',fontWeight:800,color:C.tw,letterSpacing:'-.035em',lineHeight:1.1,marginBottom:18,fontFamily:F.display}}>Clone. Build. Learn.</h2>
         <p style={{fontSize:15,color:C.t2,marginBottom:36,maxWidth:420,margin:'0 auto 36px'}}>Zero dependencies. MIT license. Read the source — every component is focused, clean, and documented.</p>
         <div style={{display:'flex',gap:12,justifyContent:'center'}}>

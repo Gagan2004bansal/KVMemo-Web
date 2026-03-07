@@ -4,6 +4,7 @@ import { C, F } from '../../constants/theme'
 
 const LINKS = [
   { to:'/',              label:'Home' },
+  { to:'/journey',       label:'Journey' },
   { to:'/playground',    label:'Playground' },
   { to:'/architecture',  label:'Architecture' },
   { to:'/roadmap',       label:'Roadmap' },

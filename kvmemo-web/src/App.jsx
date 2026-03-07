@@ -13,6 +13,7 @@ import Architecture from './pages/Architecture'
 import Roadmap from './pages/Roadmap'
 import GettingStarted from './pages/docs/GettingStarted'
 import Commands from './pages/docs/Commands'
+import Journey from './pages/Journey'
 import CallStack from './pages/docs/CallStack'
 import { Contributing, FAQ, Changelog } from './pages/docs/Other'
 import DevDocs from './pages/docs/DevDocs'
@@ -57,6 +58,7 @@ function AppInner() {
 
       <Routes>
         <Route path="/" element={<PageLayout><Home /></PageLayout>} />
+        <Route path="/journey" element={<PageLayout><Journey /></PageLayout>} />
         <Route path="/playground" element={<PageLayout><Playground /></PageLayout>} />
         <Route path="/architecture" element={<PageLayout><Architecture /></PageLayout>} />
         <Route path="/roadmap" element={<PageLayout><Roadmap /></PageLayout>} />
