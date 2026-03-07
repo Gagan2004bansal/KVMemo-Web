@@ -6,7 +6,9 @@ const NAV = [
     { to:'/docs/getting-started', label:'Introduction' },
     { to:'/docs/commands',        label:'Commands' },
     { to:'/docs/call-stack',      label:'Call Stack' },
-    { to:'/docs/DevDocs', label:'Developer Docs'}
+  ]},
+  { group:'Code Explorer', items:[
+    { to:'/docs/code-explorer',   label:'Explore Source Files' },
   ]},
   { group:'Community', items:[
     { to:'/docs/contributing', label:'Contributing' },

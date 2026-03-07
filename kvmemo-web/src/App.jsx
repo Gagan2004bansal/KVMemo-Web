@@ -16,7 +16,7 @@ import Commands from './pages/docs/Commands'
 import Journey from './pages/Journey'
 import CallStack from './pages/docs/CallStack'
 import { Contributing, FAQ, Changelog } from './pages/docs/Other'
-import DevDocs from './pages/docs/DevDocs'
+import CodeExplorer from './pages/docs/CodeExplorer'
 
 /* ── Docs layout (sidebar + main content) ── */
 function DocsLayout({ sidebarOpen }) {
@@ -68,11 +68,12 @@ function AppInner() {
           <Route path="/docs/getting-started" element={<GettingStarted />} />
           <Route path="/docs/commands"        element={<Commands />} />
           <Route path="/docs/call-stack"      element={<CallStack />} />
-          <Route path='/docs/DevDocs'         element={<DevDocs/>}/>
           <Route path="/docs/contributing"    element={<Contributing />} />
           <Route path="/docs/faq"             element={<FAQ />} />
           <Route path="/docs/changelog"       element={<Changelog />} />
         </Route>
+
+        <Route path="/docs/code-explorer" element={<div style={{paddingTop:"56px",height:"calc(100vh - 56px)",width: "100%", display:"flex",flexDirection:"column"}}><CodeExplorer /></div>} />
 
         {/* Redirect /docs → /docs/getting-started */}
         <Route path="/docs" element={<PageLayout><GettingStarted /></PageLayout>} />
