@@ -15,6 +15,7 @@ import GettingStarted from './pages/docs/GettingStarted'
 import Commands from './pages/docs/Commands'
 import Journey from './pages/Journey'
 import CallStack from './pages/docs/CallStack'
+import CppConcepts from './pages/docs/CppConcepts'
 import { Contributing, FAQ, Changelog } from './pages/docs/Other'
 import CodeExplorer from './pages/docs/CodeExplorer'
 
@@ -74,6 +75,7 @@ function AppInner() {
         </Route>
 
         <Route path="/docs/code-explorer" element={<div style={{paddingTop:"56px",height:"calc(100vh - 56px)",width: "100%", display:"flex",flexDirection:"column"}}><CodeExplorer /></div>} />
+        <Route path="/docs/cpp-concepts" element={<div style={{paddingTop:"56px"}}><CppConcepts /></div>} />
 
         {/* Redirect /docs → /docs/getting-started */}
         <Route path="/docs" element={<PageLayout><GettingStarted /></PageLayout>} />
