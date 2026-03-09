@@ -18,6 +18,7 @@ import CallStack from './pages/docs/CallStack'
 import CppConcepts from './pages/docs/CppConcepts'
 import { Contributing, FAQ, Changelog } from './pages/docs/Other'
 import CodeExplorer from './pages/docs/CodeExplorer'
+import RealWorld  from './pages/RealWorld'
 
 /* ── Docs layout (sidebar + main content) ── */
 function DocsLayout({ sidebarOpen }) {
@@ -63,6 +64,7 @@ function AppInner() {
         <Route path="/playground" element={<PageLayout><Playground /></PageLayout>} />
         <Route path="/architecture" element={<PageLayout><Architecture /></PageLayout>} />
         <Route path="/roadmap" element={<PageLayout><Roadmap /></PageLayout>} />
+        <Route path="/real-world" element={<PageLayout><RealWorld /></PageLayout>} />
 
         {/* Docs */}
         <Route element={<DocsLayout sidebarOpen={sidebarOpen} />}>

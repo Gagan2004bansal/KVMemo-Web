@@ -43,7 +43,8 @@ export default function Topbar({ wsStatus, sidebarOpen, onToggle }) {
       <Link to="/" style={{display:'flex',alignItems:'center',gap:10,marginRight:36,flexShrink:0}}>
         <div style={{
           width:32,height:32,borderRadius:9,flexShrink:0,
-          background:`linear-gradient(135deg,${C.blue},${C.violet})`,
+          background: 'blue',
+          // background:`linear-gradient(135deg,${C.blue},${C.violet})`,
           display:'flex',alignItems:'center',justifyContent:'center',
           fontFamily:F.mono,fontSize:11,fontWeight:700,color:'#fff',
           boxShadow:`0 0 20px ${C.gB}`,

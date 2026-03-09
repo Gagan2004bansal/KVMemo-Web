@@ -10,6 +10,7 @@ const NAV = [
   { group:'Code Explorer', items:[
     { to:'/docs/code-explorer',   label:'Explore Source Files' },
     { to:'/docs/cpp-concepts',   label:'C++ Concepts' },
+    { to:'/real-world', label:'In-Memory DB in the Wild' },
   ]},
   { group:'Community', items:[
     { to:'/docs/contributing', label:'Contributing' },
@@ -64,7 +65,7 @@ export default function Sidebar({ open }) {
 
         <div style={{margin:'0 14px',padding:'14px 16px',borderRadius:10,border:`1px solid ${C.b0}`,background:C.bg1}}>
           <p style={{fontSize:12,fontWeight:600,color:C.t1,marginBottom:6}}>KVMemo</p>
-          <p style={{fontSize:11,color:C.t3,fontFamily:F.mono,lineHeight:1.7}}>v0.1.0-dev · C++20<br/>MIT License</p>
+          <p style={{fontSize:11,color:C.t3,fontFamily:F.mono,lineHeight:1.7}}>v0.1.0-dev · MIT License</p>
           <a href="https://github.com/Gagan2004bansal/KVMemo" target="_blank" rel="noreferrer"
             style={{display:'inline-block',marginTop:10,fontSize:11,color:C.blue,transition:'color .15s'}}
             onMouseEnter={e=>e.target.style.color=C.blue2}
