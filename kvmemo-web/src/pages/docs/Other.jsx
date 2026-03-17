@@ -10,7 +10,7 @@ export function Contributing() {
     <div style={{ fontFamily: F.body, padding: '48px 0' }}>
       <DocHeader breadcrumb="// docs / contributing" title="Contributing" sub="Issues, PRs, and feature ideas are all welcome." />
       <H2>Dev Setup</H2>
-      <CodeBlock label="clone + debug build" code={"git clone https://github.com/Gagan2004bansal/KVMemo.git\ncd KVMemo && mkdir build && cd build\ncmake .. -DCMAKE_BUILD_TYPE=Debug\ncmake --build . --parallel"} />
+      <CodeBlock label="clone + debug build" code={"git clone https://github.com/Gagan2004bansal/KVMemo.git\ncd KVMemo && mkdir build && cd build\ncmake .. \ncmake --build ."} />
       <H2>Run Tests</H2>
       <CodeBlock label="bash" code={"cd build\nctest --output-on-failure"} />
       <Callout type="tip">Tests must pass before opening a PR. New commands need at least one unit test and one integration test.</Callout>

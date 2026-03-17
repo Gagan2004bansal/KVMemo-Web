@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { C, F } from '../constants/theme'
 import { Badge, SectionHead } from '../components/ui'
@@ -88,6 +88,173 @@ function Terminal() {
     </div>
   )
 }
+
+/* ══════════════════════════════════════════════
+   FIRST-VISIT TOAST
+══════════════════════════════════════════════ */
+function FirstVisitToast() {
+  console.log("csalll")
+  const [visible, setVisible]   = useState(false)
+  const [leaving, setLeaving]   = useState(false)
+  const timerRef                = useRef(null)
+
+  useEffect(() => {
+    // Only show once per browser
+    const seen = localStorage.getItem('kvmemo_visited')
+    if (!seen) {
+      // Small delay so page animation settles first
+      timerRef.current = setTimeout(() => {
+        setVisible(true)
+        localStorage.setItem('kvmemo_visited', '1')
+      }, 1800)
+    }
+    return () => clearTimeout(timerRef.current)
+  }, [])
+
+  const dismiss = useCallback(() => {
+    setLeaving(true)
+    setTimeout(() => setVisible(false), 350)
+  }, [])
+
+  // Auto-dismiss after 6 seconds
+  useEffect(() => {
+    if (!visible) return
+    const t = setTimeout(dismiss, 6000)
+    return () => clearTimeout(t)
+  }, [visible, dismiss])
+
+  if (!visible) return null
+
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: 28,
+      right: 28,
+      zIndex: 9999,
+      animation: leaving
+        ? 'toastOut 0.35s cubic-bezier(.4,0,1,1) both'
+        : 'toastIn  0.4s  cubic-bezier(.2,1.3,.4,1) both',
+    }}>
+      <style>{`
+        @keyframes toastIn  { from{opacity:0;transform:translateY(16px) scale(.96)} to{opacity:1;transform:none} }
+        @keyframes toastOut { from{opacity:1;transform:none} to{opacity:0;transform:translateY(10px) scale(.97)} }
+        .toast-link:hover { background: rgba(59,130,246,0.22) !important; }
+        .toast-close:hover { color: #f0f6fc !important; background: rgba(255,255,255,.08) !important; }
+      `}</style>
+
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        padding: '13px 16px 13px 18px',
+        borderRadius: 14,
+        background: 'rgba(7,13,30,0.92)',
+        border: '1px solid rgba(59,130,246,0.35)',
+        backdropFilter: 'blur(16px)',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(59,130,246,0.12), 0 0 24px rgba(59,130,246,0.08)',
+        maxWidth: 320,
+        minWidth: 260,
+      }}>
+
+        {/* Pulsing dot */}
+        <div style={{ position: 'relative', flexShrink: 0, width: 10, height: 10 }}>
+          <div style={{
+            position: 'absolute', inset: 0, borderRadius: '50%',
+            background: '#3b82f6', opacity: 0.4,
+            animation: 'pulse 2s ease infinite',
+          }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#60a5fa' }} />
+        </div>
+
+        {/* Text + link */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <p style={{
+            margin: '0 0 3px',
+            fontSize: 11,
+            color: 'rgba(122,154,191,0.8)',
+            fontFamily: "'JetBrains Mono', monospace",
+            letterSpacing: '.04em',
+            textTransform: 'uppercase',
+          }}>
+            Just added
+          </p>
+          <Link
+            to="/docs/getting-started"
+            onClick={dismiss}
+            className="toast-link"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 13.5,
+              fontWeight: 700,
+              color: '#f0f6fc',
+              textDecoration: 'none',
+              padding: '2px 8px 2px 4px',
+              borderRadius: 6,
+              background: 'rgba(59,130,246,0.12)',
+              transition: 'background 0.15s',
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+              <rect x="2" y="2" width="12" height="3" rx="1.5" fill="#60a5fa" opacity=".6"/>
+              <rect x="2" y="7" width="9"  height="2" rx="1"   fill="#60a5fa" opacity=".45"/>
+              <rect x="2" y="11" width="11" height="2" rx="1"  fill="#60a5fa" opacity=".3"/>
+            </svg>
+            Checkout Docs
+            <span style={{
+              fontSize: 10, fontWeight: 600,
+              padding: '1px 7px', borderRadius: 99,
+              background: 'rgba(59,130,246,0.25)',
+              color: '#93c5fd',
+              border: '1px solid rgba(59,130,246,0.3)',
+              letterSpacing: '.03em',
+              fontFamily: "'JetBrains Mono', monospace",
+            }}>latest added</span>
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ marginLeft: 1, opacity: .6 }}>
+              <path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        </div>
+
+        {/* Dismiss button */}
+        <button
+          onClick={dismiss}
+          className="toast-close"
+          style={{
+            flexShrink: 0,
+            width: 24, height: 24,
+            borderRadius: 6,
+            border: 'none',
+            background: 'transparent',
+            color: 'rgba(122,154,191,0.6)',
+            cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 16, lineHeight: 1,
+            transition: 'all .15s',
+          }}
+          aria-label="Dismiss"
+        >×</button>
+
+        {/* Progress bar — auto-dismiss countdown */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0, left: 0,
+          height: 2, borderRadius: '0 0 14px 14px',
+          background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)',
+          animation: 'toastProgress 6s linear both',
+        }} />
+        <style>{`
+          @keyframes toastProgress {
+            from { width: 100%; }
+            to   { width: 0%;   }
+          }
+        `}</style>
+      </div>
+    </div>
+  )
+}
+
 
 /* ──────────────────────────────────────────
    Scroll-triggered stat card
@@ -180,6 +347,7 @@ const PIPELINE = [
 export default function Home() {
   return (
     <div style={{fontFamily:F.body}}>
+      <FirstVisitToast />
 
       {/* ═══ HERO ═════════════════════════════ */}
       <section style={{position:'relative',minHeight:'100vh',display:'flex',alignItems:'center',paddingTop:56}}>
